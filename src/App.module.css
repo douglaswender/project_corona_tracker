@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(250, 250,250);
+  background-color: rgb(250, 250, 250);
 }
 
 .container {
@@ -9,9 +9,11 @@ body {
 }
 
 .image {
-  width: 370px;
-  margin-top: 50px;
+  width: 200px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
+
 
 @media only screen and (max-width: 770px) {
   .container {

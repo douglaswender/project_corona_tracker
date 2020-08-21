@@ -4,33 +4,33 @@ import CardComponent from './Card/Card';
 
 import styles from './Cards.module.css';
 
-const Info = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
-  if (!confirmed) {
-    return 'Loading...';
+const Info = ({ data: { data, obitos, casosCurados, casosConfirmados } }) => {
+  if (!data) {
+    return 'Carregando...';
   }
   return (
     <div className={styles.container}>
       <Grid container spacing={3} justify="center">
         <CardComponent
           className={styles.infected}
-          cardTitle="Infected"
-          value={confirmed.value}
-          lastUpdate={lastUpdate}
-          cardSubtitle="Number of active cases from COVID-19."
+          cardTitle="Infectados"
+          value={casosConfirmados}
+          lastUpdate={data}
+          cardSubtitle="Número de casos encontrados."
         />
         <CardComponent
           className={styles.recovered}
-          cardTitle="Recovered"
-          value={recovered.value}
-          lastUpdate={lastUpdate}
-          cardSubtitle="Number of recoveries from COVID-19."
+          cardTitle="Curados"
+          value={casosCurados}
+          lastUpdate={data}
+          cardSubtitle="Número de casos curados."
         />
         <CardComponent
           className={styles.deaths}
-          cardTitle="Deaths"
-          value={deaths.value}
-          lastUpdate={lastUpdate}
-          cardSubtitle="Number of deaths caused by COVID-19."
+          cardTitle="Mortes"
+          value={obitos}
+          lastUpdate={data}
+          cardSubtitle="Número de mortes causadas pelo COVID-19."
         />
       </Grid>
     </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Cards, CountryPicker, Chart } from './components';
-import { fetchData } from './api/';
+import { Cards, Chart } from './components';
+import { fetchData, fetchDailyData } from './api/';
 import styles from './App.module.css';
 
 import image from './images/image.png';
@@ -9,13 +9,14 @@ import image from './images/image.png';
 class App extends React.Component {
   state = {
     data: {},
+    allData: [],
     country: '',
   }
 
   async componentDidMount() {
     const data = await fetchData();
-
-    this.setState({ data });
+    const allData = await fetchDailyData();
+    this.setState({ data, allData });
   }
 
   handleCountryChange = async (country) => {
@@ -25,14 +26,14 @@ class App extends React.Component {
   }
 
   render() {
-    const { data, country } = this.state;
+    const { data, allData } = this.state;
 
     return (
       <div className={styles.container}>
         <img className={styles.image} src={image} alt="COVID-19" />
         <Cards data={data} />
-        <CountryPicker handleCountryChange={this.handleCountryChange} />
-        <Chart data={data} country={country} /> 
+        {/* <CountryPicker handleCountryChange={this.handleCountryChange} /> */}
+        <Chart data={allData} /> 
       </div>
     );
   }
