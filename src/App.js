@@ -6,6 +6,9 @@ import styles from './App.module.css';
 
 import image from './images/image.png';
 
+import ReactGA from 'react-ga';
+const trackingId = "UA-176066405-1";
+
 class App extends React.Component {
   state = {
     data: {},
@@ -14,6 +17,8 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
+    ReactGA.initialize(trackingId);
+    ReactGA.pageview(window.location.pathname + window.location.search);
     const data = await fetchData();
     const allData = await fetchDailyData();
     this.setState({ data, allData });
